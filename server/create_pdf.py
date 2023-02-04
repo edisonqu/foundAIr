@@ -1,6 +1,10 @@
 from fpdf import FPDF
+from api_call import *
 
 title = 'Business Plan'
+company_name = "Edison's Dog Store"
+author = "Edison Qu"
+idea = "dog plushies"
 
 class PDF(FPDF):
     # def header(self):
@@ -68,39 +72,18 @@ class PDF(FPDF):
         self.cell(0,50,'Presented By:',0,1)
         self.cell(0,0,"Edison Qu",0,1)
 
-    def table_of_contents(self):
-
+    def body_page(self, title, output):
         self.add_page()
-        self.set_font("Times","B",24)
-        self.cell(0,30,"Table Of Contents",0,1,'C',False)
-        self.set_font("Times","",18)
-        # topics = ["Executive Summary","Business Overview","Market Analysis","Competitive Advantage","Sales & Market Strategy","Finance","Risk Deduction","Conclusion"]
-        #
-        # for index in range(len(topics)):
-        #     character_number = len(topics[index])
-        #     number_of_periods = 90-character_number-1
-        #     periods = '.'*number_of_periods
-        #     self.cell(0, 18, topics[index]+periods+str(index), 0, 1, '', False)
-        self.cell(0, 18, "Executive Summary................................................................................3", 0, 1, '', False)
-        self.cell(0, 18, "Business Overview............ .....................................................................4", 0, 1, '', False)
-        self.cell(0, 18, "Market Analysis......................................................................................5", 0, 1, '', False)
-        self.cell(0, 18, "Competitive Advantage..........................................................................6", 0, 1, '', False)
-        self.cell(0, 18, "Sales & Market Strategy.........................................................................7", 0, 1, '', False)
-        self.cell(0, 18, "Timeline...................................................................................................8", 0, 1, '', False)
-        self.cell(0, 18, "Finance....................................................................................................9", 0, 1, '', False)
-        self.cell(0, 18, "Risk Deduction.......................................................................................10", 0, 1, '', False)
-        self.cell(0, 18, "Conclusion..............................................................................................11", 0, 1, '', False)
-
-
-    def body_page(self):
-
-        return
+        self.set_font('Times', "B", 24)
+        self.cell(0, 8, title, 0, 1, 'L', False)
+        self.set_font('Times', "", 11)
+        self.multi_cell(0, 5, output, 0, 1)
 
 pdf = PDF(format="A4")
 pdf.set_title(title)
-pdf.set_author('Edison Qu')
-pdf.title_page(company_name=3)
-pdf.table_of_contents()
+pdf.set_author(author)
+pdf.title_page(company_name)
+pdf.body_page("Executive Summary", get_executive_summary(company_name, idea, 3000))
 # pdf.print_chapter(1, 'A RUNAWAY REEF', '20k_  c1.txt')
 # pdf.print_chapter(2, 'THE PROS AND CONS', '20k_c2.txt')
 pdf.output('tuto3.pdf', 'F')
