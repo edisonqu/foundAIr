@@ -1,4 +1,5 @@
 import dotenv
+import requests
 
 dotenv.load_dotenv()
 
@@ -6,8 +7,6 @@ import os
 import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
-summary = ""
 
 bname =''
 idea = ''
@@ -22,33 +21,100 @@ prompts = [
   f"the business name is {bname}. i am writing a business plan. business idea: {idea}. minimum 500 words. explain the key metrics with specific numbers in jot form. describe methods to reduce risk. explain how we will reassess and reevaluate our progress. no headings.",
   f"summarize the following text in 150 words."]
 
-def call_api(prompts):
+# def call_api(prompts):
+#
+#   print(prompts)
+#   response = openai.Completion.create(
+#     model="text-davinci-003",
+#     prompt=prompts + f" {summary}",
+#     temperature=0.1,
+#     max_tokens=3500,
+#     top_p=1,
+#     frequency_penalty=0,
+#     presence_penalty=0
+#   )
+#   return response["choices"][0]['text']
 
+def call_api(prompts, summary):
   print(prompts)
-  response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt=prompts + f" {summary}",
-    temperature=0.1,
-    max_tokens=3500,
-    top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0
-  )
-  return response["choices"][0]['text']
+
+  if "summarize the following text in 150 words" in prompts:
+    print("print now ")
+    headers = {
+      # Already added when you pass json=
+      # 'Content-Type': 'application/json',
+      'Authorization': f'Bearer {os.getenv("OPENAI_API_KEY")}',
+    }
+
+    json_data = {
+      'model': 'text-davinci-003',
+      'prompt': prompts + f" {summary}",
+      'temperature': 0.1,
+      'max_tokens': 2500,
+    }
+
+    response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=json_data)
+    res = response.json()
+    print(res)
+    return res["choices"][0]['text']
+  else:
+    headers = {
+      # Already added when you pass json=
+      # 'Content-Type': 'application/json',
+      'Authorization': f'Bearer {os.getenv("OPENAI_API_KEY")}',
+    }
+
+    json_data = {
+      'model': 'text-davinci-003',
+      'prompt': prompts + f" {summary}",
+      'temperature': 0.1,
+      'max_tokens': 3500,
+    }
+
+    response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=json_data)
+    res = response.json()
+    print(res)
+    return res["choices"][0]['text']
+
+
+
+
+# def get_executive_summary(bname, idea, budget):
+#   response = openai.Completion.create(
+#     model="text-davinci-003",
+#     prompt=f"the business name is {bname}. i am writing a business plan. write an executive summary for my business. "
+#            f"minimum 500 words. business idea: {idea}. topics to cover: problem, solution, customer segments, "
+#            f"financials on a {budget} budget, marketing channels both online and in-person, sales methods both online "
+#            f"and in-person, key metrics, risk reduction, and competitive advantage. section paragraphs by topic. no "
+#            f"headings and no jot notes.",
+#     temperature=0.1,
+#     max_tokens=3500,
+#     top_p=1,
+#     frequency_penalty=0,
+#     presence_penalty=0
+#   )
+#   summary = response["choices"][0]['text']
+#   return summary
 
 def get_executive_summary(bname, idea, budget):
-  response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt=f"the business name is {bname}. i am writing a business plan. write an executive summary for my business. "
+  headers = {
+    # Already added when you pass json=
+    # 'Content-Type': 'application/json',
+    'Authorization': f'Bearer {os.getenv("OPENAI_API_KEY")}',
+  }
+
+  json_data = {
+    'model': 'text-davinci-003',
+    'prompt': f"the business name is {bname}. i am writing a business plan. write an executive summary for my business. "
            f"minimum 500 words. business idea: {idea}. topics to cover: problem, solution, customer segments, "
            f"financials on a {budget} budget, marketing channels both online and in-person, sales methods both online "
            f"and in-person, key metrics, risk reduction, and competitive advantage. section paragraphs by topic. no "
            f"headings and no jot notes.",
-    temperature=0.1,
-    max_tokens=3500,
-    top_p=1,
-    frequency_penalty=0,
-    presence_penalty=0
-  )
-  summary = response["choices"][0]['text']
-  return summary
+    'temperature': 0.1,
+    'max_tokens': 3500,
+  }
+
+  response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=json_data)
+  res = response.json()
+  print(res)
+  return res["choices"][0]['text']
