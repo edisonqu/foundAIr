@@ -23,7 +23,6 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { Worker } from '@react-pdf-viewer/core'; 
 
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
 import PDFViewer from 'pdf-viewer-reactjs'
 
 const useStyles = makeStyles((theme) => ({
