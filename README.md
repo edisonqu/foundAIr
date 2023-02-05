@@ -1,7 +1,20 @@
 ## foundAIr
 
-Become a startup founder in just 30 seconds!
+Become a startup founder in just 30 seconds! Create a business plan in minutes!
 
+## Quick Start
+
+Start the React frontend server by navigating to the `/client`, installing the dependencies with `npm install` and then starting it up with `npm start`
+
+
+
+## Demo
+
+Navigate to the [foundAIr Generated Business Plan on Dog Fur Jackets.](dog_jacket_business_plan.pdf)
+
+## Try It Out!
+
+**[http://foundair.tech/](requirements.txt)** (stolen domain)
 ## Inspiration
 
 Imagine you have a great idea for a startup (as we're sure you probably don't even need to imagine). You've got a vision, you've got your dream, but when it comes time to execute, suddenly, you feel lost, and you don't know where to even start. Lucky for you, we created foundAIr - an AI-powered business plan writer that will take care of the logistics for you! We felt that uncertainty when we started our own ventures, but after overcoming this challenge, we've put our minds together to help other founders take their ventures to the moon!
