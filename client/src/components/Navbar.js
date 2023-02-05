@@ -52,12 +52,12 @@ const Navbar = () => {
 
    return (
     //{pathname ? opacity:0 : opacity:1}
-       <header className="border-[#130611] border-transparent border-solid border-2 flex flex-col justify-center bg-[#130611] z-[99999999] min-h-[7vh] py-2 lg:py-4">
+       <header className="border-[#130611] border-transparent border-solid border-2 flex flex-col justify-center bg-[#ff2bdf] z-[99999999] min-h-[7vh] py-2 lg:py-4">
            <div className="container px-4 mx-auto lg:flex lg:items-center m-30">
                <div className="flex justify-between items-center">
                    <Link className="flex flex-row items-center gap-4 font-bold text-2xl text-teal" to="/">
                        {/* <img src="" alt="Logo" width={29} height={42} /> */}
-                       <h2 className="text-4xl text-black font-mono hover:text-yellow-900">MacHacks </h2>
+                       <h2 className="text-4xl text-black font-mono hover:text-yellow-900">foundAIr</h2>
                    </Link>
  
                    <button

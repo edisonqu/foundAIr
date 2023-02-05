@@ -2,7 +2,7 @@ import React from 'react'
 
 const Confirm = () => {
   return (
-    <div>Confirm</div>
+    <div className='text-5xl text-center mt-20'>Generating Your Plan...</div>
   )
 }
 

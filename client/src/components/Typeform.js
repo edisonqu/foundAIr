@@ -21,36 +21,41 @@ const Typeform = ({ children, onSubmit }) => {
     children = [...children, <Confirm />];
     const [fields, setFields] = useState(0);
     const nextField = () => {
-      if (fields < children.length) setFields((prev) => prev + 1);
+      if ((fields < children.length) && (children[fields])) setFields((prev) => prev + 1);
     };
     const prevField = () => {
       if (fields > 0) setFields((prev) => prev - 1);
     };
 
   return (
-    <div className=''>
-        <form className={classes.box} onSubmit={onSubmit}>
-            {children[fields]}
-            <div className='flex justify-center'>
-              <ButtonGroup
-              disableElevation
-              size="large"
-              variant="contained"
-              color="primary"
-              >
-                {fields < children.length - 1 && fields > 0 && (
-                  <Button onClick={prevField} className='m-2'>back</Button>
-                )}
-                {fields < children.length - 2 && (
-                  <Button onClick={nextField} className='mx-12'>Next</Button>
-                )}
-                {fields === children.length - 2 && (
-                  <Button onClick={nextField} className='m-2'>Submit</Button>
-                )}
-              </ButtonGroup>
-            </div>
-      </form>
-    </div>
+
+      <form className={classes.box} onSubmit={onSubmit}>
+          {children[fields]}
+          <div className='flex justify-center'>
+            <ButtonGroup
+            disableElevation
+            size="large"
+            variant="contained"
+            color="primary"
+            >
+              {fields < children.length - 1 && fields > 0 && (
+                <Button onClick={prevField} className='m-2'>back</Button>
+              )}
+              {fields < children.length - 2 && (
+                <Button onClick={nextField} className='mx-12'>Next</Button>
+              )}
+              {fields === children.length - 2 && (
+                <input
+                type="submit"
+                className="rounded-xl p-4 text-white bg-zinc-800 active:bg-zinc-600 transition-all duration-75 font-bold cursor-pointer px-36 py-8"
+                value="Submit"
+
+            />
+              )}
+            </ButtonGroup>
+          </div>
+    </form>
+
   )
 }
 
