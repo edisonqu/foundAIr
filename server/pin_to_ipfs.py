@@ -1,32 +1,22 @@
 import requests
 import dotenv
 import os
+from pestuary import Pestuary
+
+dotenv.load_dotenv()
 
 
-def pinToIPFS(filename):
-    dotenv.load_dotenv()
+def pinToIPFS():
 
-    url = "https://api.nft.storage/upload"
-    headers = {
-        "Content-Type": "*/*",
-        "accept":"application/json",
-        "Authorization":f"Bearer {os.getenv('YOUR_STORAGE_API_KEY')}"
-    }
+    pestuary = Pestuary(estuary_key=os.getenv("ESTUARY_API_KEY"))
 
+    collectionsApi = pestuary.get_collections_api()
+    contentApi = pestuary.get_content_api()
 
-    with open(f"{filename}", 'rb') as f:
-        file = f.read()
+    adding_content = contentApi.content_add_post("tmp/business_plan.pdf", filename="business_plan.pdf")
 
-    response = requests.request("POST",url,headers=headers,data=file)
+    return adding_content
 
-    res = response.json()
+pinToIPFS()
 
-    if os.path.exists(f"{filename}"):
-      os.remove(f"{filename}")
-    else:
-      print("The file does not exist")
-
-    print(res)
-
-    return res
 
