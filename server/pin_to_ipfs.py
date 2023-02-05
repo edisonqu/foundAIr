@@ -1,8 +1,5 @@
-import os
-
 import requests
 import dotenv
-import json
 import os
 
 
@@ -32,3 +29,4 @@ def pinToIPFS(filename):
     print(res)
 
     return res
+
