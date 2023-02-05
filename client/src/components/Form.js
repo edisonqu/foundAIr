@@ -24,7 +24,7 @@ const Form = ({ onSubmit }) => {
         animate={{ y: 0 }}
         transition={{ stiffness: 150 }}
       >
-        <TextField id="idea" fullWidth label="Idea (10 words max)" name='idea' required onChange={e => onSubmit(e.target.value)}/>
+        <TextField id="idea" fullWidth label="What is Your Idea (10 words max)" name='idea' required onChange={e => onSubmit(e.target.value)}/>
       </motion.div>
   </fieldset>
   )
