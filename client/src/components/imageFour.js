@@ -1,8 +1,8 @@
 import { Parallax } from 'react-parallax';
-import mountainsfront from "../img/mountains_front.png"
-const imageFour = () => (
-    <div>
-    <Parallax className='image' bgImage={mountainsfront} strength={800}>
+import mountainsfront from "../images/mountains_front.png"
+const ImageFour = () => (
+    <div className='text-box'>
+    <Parallax className='images' bgImage={mountainsfront} strength={800}>
         <div className="content">
             <span className="img-txt">a trip to space </span>
         </div>
@@ -10,4 +10,5 @@ const imageFour = () => (
     </div>
 );
 
-export default imageFour
+export default ImageFour
+

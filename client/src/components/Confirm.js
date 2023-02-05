@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Confirm = () => {
+const Confirm = ({ }) => {
   return (
-    <div className='text-5xl text-center mt-20'>Generating Your Plan...</div>
+    <div className='text-5xl text-center mt-20'>AJ</div>
   )
 }
 

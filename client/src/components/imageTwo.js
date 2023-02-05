@@ -1,8 +1,8 @@
 import { Parallax } from 'react-parallax';
-import moon from "../img/moon.png"
+import moon from "../images/moon.png"
 const imageTwo = () => (
     <div>
-    <Parallax className='image' bgImage={moon} strength={800}>
+    <Parallax className='images' bgImage={moon} strength={800}>
     </Parallax>
     </div>
 );

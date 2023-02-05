@@ -45,12 +45,7 @@ const Typeform = ({ children, onSubmit }) => {
                 <Button onClick={nextField} className='mx-12'>Next</Button>
               )}
               {fields === children.length - 2 && (
-                <input
-                type="submit"
-                className="rounded-xl p-4 text-white bg-zinc-800 active:bg-zinc-600 transition-all duration-75 font-bold cursor-pointer px-36 py-8"
-                value="Submit"
-
-            />
+                <Button onClick={onSubmit} className='mx-12'>Submit</Button>
               )}
             </ButtonGroup>
           </div>
