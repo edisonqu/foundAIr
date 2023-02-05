@@ -24,7 +24,7 @@ def create_pdf(title,company_name,author,idea,budget):
             self.add_page()
             self.set_font('Arial', "", 36)
             self.cell(0, 50, "Business Plan", 0, 1, 'C', False)
-            self.set_font('Arial',"B", 48)
+            self.set_font('Arial',"B", 42)
             self.cell(0, 50, f"{company_name}", 0, 1, 'C', False)
             self.set_font('Arial',"", 24)
             self.cell(0,50,'Presented By:',0,1)
@@ -66,12 +66,15 @@ def create_pdf(title,company_name,author,idea,budget):
     pdf.set_author(author)
     pdf.title_page(company_name)
     pdf.table_of_contents()
-    pdf.set_font('Times',"",24)
-    topics = ["Business Overview","Market Analysis","Competitive Advantage","Sales & Market Strategy","Timeline","Finance","Key Metrics and Risk Deduction","Conclusion"]
-    pdf.body_page("Executive Summary", get_executive_summary(company_name, idea, budget))
-    prompts = [f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 600 words. describe the problem faced by people without my business idea, the pain points my business idea targets, and explain my idea. no headings, no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. write me a market analysis, explaining the target market, the customer segments, explain how the consumers will take advantage of this, and explain the competition from other business i will face. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. write me the unique value proposition of my idea and the competitive advantage of my idea. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 550 words. explain the marketing channels i can take advantage of to promote my idea and interact with my consumers, both online and in person. explain how i can sell my idea in person and online. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. write a timeline to launch my business with numbers. minimum 500 words. business idea: {idea}. no headings and no jot notes.", f"the business name is {company_name}.i am writing a business plan. business idea: {idea}. my budget is only {budget}. give me a budget for my business and include descriptions for each cost. include numbers and jot form.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. explain the key metrics with specific numbers in jot form. describe methods to reduce risk. explain how we will reassess and reevaluate our progress. no headings.", f"summarize the following text in 150 words."]
+    # pdf.set_font('Times',"",24)
+    # topics = ["Business Overview","Market Analysis","Competitive Advantage","Sales & Market Strategy","Timeline","Finance","Key Metrics and Risk Deduction","Conclusion"]
+    # summary = get_executive_summary(company_name,idea,budget)
+    # pdf.body_page("Executive Summary",summary)
+    # prompts = [f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 600 words. describe the problem faced by people without my business idea, the pain points my business idea targets, and explain my idea. no headings, no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. write me a market analysis, explaining the target market, the customer segments, explain how the consumers will take advantage of this, and explain the competition from other business i will face. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. write me the unique value proposition of my idea and the competitive advantage of my idea. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 550 words. explain the marketing channels i can take advantage of to promote my idea and interact with my consumers, both online and in person. explain how i can sell my idea in person and online. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. write a timeline to launch my business with numbers. minimum 500 words. business idea: {idea}. no headings and no jot notes.", f"the business name is {company_name}.i am writing a business plan. business idea: {idea}. my budget is only {budget}. give me a budget for my business and include descriptions for each cost. include numbers and jot form.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. explain the key metrics with specific numbers in jot form. describe methods to reduce risk. explain how we will reassess and reevaluate our progress. no headings.", f"summarize the following text in 150 words. {summary}"]
+    #
+    # for index_number in range(len(topics)):
+    #     pdf.body_page(topics[index_number],call_api(prompts[index_number]))
 
-    for index_number in range(len(topics)):
-        pdf.body_page(topics[index_number],call_api(prompts[index_number]))
+    return pdf.output('tmp/business_plan.pdf','S')
 
-    pdf.output('tmp/business_plan.pdf', 'F')
+

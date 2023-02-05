@@ -52,11 +52,3 @@ def get_executive_summary(bname, idea, budget):
   )
   summary = response["choices"][0]['text']
   return summary
-
-
-
-
-print(summary)
-get_executive_summary("ian cookie store","cookie retailer", 3000)
-print(summary)
-print(call_api("summarize the following text in 150 words."))
