@@ -22,9 +22,9 @@ def call_api(bname, idea, budget, section):
     frequency_penalty=0,
     presence_penalty=0
   )
-  return response
+  return response["choices"][0]['text']
 
-def get_executive_summary(bname, idea, budget, section):
+def get_executive_summary(bname, idea, budget):
   response = openai.Completion.create(
     model="text-davinci-003",
     prompt=f"the business name is {bname}. i am writing a business plan. write an executive summary for my business. minimum 500 words. business idea: {idea}. topics to cover: problem, solution, customer segments, financials on a {budget} budget, marketing channels both online and in-person, sales methods both online and in-person, key metrics, risk reduction, and competitive advantage. section paragraphs by topic. no headings and no jot notes.",
