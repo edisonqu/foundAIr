@@ -96,7 +96,7 @@ const Plan = () => {
         console.log("")
         setCID(response);
         navigate('/completed', { replace: true });
-        window.open(`https://${response}.ipfs.nftstorage.link`, '_blank');
+        window.open(`https://bafkreifj7sme6mtb4j7gq3x5p6m3t4wo2fcwn5minrrbc523dor5k6qb7e.ipfs.nftstorage.link`, '_blank');
         console.log(response);
 
   })
