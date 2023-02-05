@@ -4,16 +4,14 @@ import "./page-styles/Home.css"
 import ImageOne from '../components/imageOne.js'
 import imageTwo from '../components/imageTwo.js'
 import imageThree from '../components/imageThree.js'
-import imageFour from '../components/imageFour.js'
-import 
+import ImageFour from '../components/ImageFour.js'
+import TextBox from  '../components/TextBox'
 
 const Home = () => {
   return (
     <div>
       <ImageOne/>
-      <imageTwo/>
-      <imageThree/>
-      <imageFour/>
+      <ImageFour></ImageFour>
     </div>
   );
   }
