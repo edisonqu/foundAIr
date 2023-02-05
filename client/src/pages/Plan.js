@@ -88,7 +88,6 @@ const Plan = () => {
     console.log(company, name, idea, budget);
     console.log("fetching")
 
-
     // fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=few&author=fewfw%20Qu&idea=fewfwf&budget=fewfewf`, {
     await fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=${company}&author=${name}&idea=${idea}&budget=${budget}`)
     .then((response)=>{
