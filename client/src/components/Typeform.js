@@ -18,10 +18,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Typeform = ({ children, onSubmit }) => {
     const classes = useStyles();
-    children = [...children, <Confirm />];
+    children = [...children, <div></div>];
     const [fields, setFields] = useState(0);
     const nextField = () => {
       if ((fields < children.length) && (children[fields])) setFields((prev) => prev + 1);
+
+      if (fields === children.length - 2) {
+        onSubmit();
+      }
     };
     const prevField = () => {
       if (fields > 0) setFields((prev) => prev - 1);
@@ -45,7 +49,7 @@ const Typeform = ({ children, onSubmit }) => {
                 <Button onClick={nextField} className='mx-12'>Next</Button>
               )}
               {fields === children.length - 2 && (
-                <Button onClick={onSubmit} className='mx-12'>Submit</Button>
+                <Button onClick={nextField} className='mx-12'>Submit</Button>
               )}
             </ButtonGroup>
           </div>
