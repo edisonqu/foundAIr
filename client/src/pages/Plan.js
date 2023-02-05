@@ -17,14 +17,6 @@ import { motion } from 'framer-motion'
 import "./page-styles/Plan.css"
 
 
-import { Viewer } from '@react-pdf-viewer/core'; 
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; 
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-import { Worker } from '@react-pdf-viewer/core'; 
-
-import PDFViewer from 'pdf-viewer-reactjs'
-
 const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
