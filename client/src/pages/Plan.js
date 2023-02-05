@@ -5,13 +5,14 @@ import IdeaField from "../components/Form";
 import BudgetField from "../components/Form2";
 import CompanyField from "../components/Form3";
 import Typewriter from 'typewriter-effect'
-
+import { useNavigate } from 'react-router-dom'
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import { mergeClasses } from '@material-ui/styles';
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { motion } from 'framer-motion'
 
 import "./page-styles/Plan.css"
 
@@ -39,6 +40,7 @@ const Plan = () => {
   let pdf = true;
   const url = 
 "https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf"
+const CID1 = "bafkreicbb5uo4olhe4eptcws4ai2embnqxypcxcsn73j7puhpru75v373q"
   const [name, setName] = useState("");
   const [idea, setIdea] = useState("");
   const [budget, setBudget] = useState("");
@@ -51,6 +53,8 @@ const Plan = () => {
 	const [numPages, setNumPages] = useState(null);
 	const [pageNumber, setPageNumber] = useState(1);
 
+  const navigate = useNavigate()
+
 	const onDocumentLoadSuccess = ({ numPages }) => {
 		setNumPages(numPages);
 	};
@@ -62,6 +66,7 @@ const Plan = () => {
 		setPageNumber(
 			pageNumber + 1 >= numPages ? numPages : pageNumber + 1,
 		);
+    
 
   
 
@@ -87,19 +92,14 @@ const Plan = () => {
     data = {name, idea, budget, company};
     setHasData(true);
     console.log(data);
-    console.log("asdsda");
-
   }
 
   const handleConfirm = () => {
     setHasPdf(false);
     console.log(company, name, idea, budget);
     console.log("fetching")
-    console.log(company)
-    console.log(name)
-    console.log(idea)
-    console.log(budget)
-    console.log('hello')
+
+
     fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=${company}&author=${name} Qu&idea=${idea}&budget=${budget}`, {
     // fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=ian%27s%20daycare&author=Edison%20Qu&idea=holding%20children%20hostage%20for%20cash&budget=25000`, {  
       method: 'GET',
@@ -107,9 +107,10 @@ const Plan = () => {
      },
   }).then(function(response){
     response.text().then((response)=>{
-        setCID(response)
+        setCID(response);
+        navigate('/completed', { replace: true });
         window.open(`https://${CID}.ipfs.nftstorage.link`, '_blank');
-        console.log(response)
+        console.log(response);
 
   })
   return null
@@ -151,20 +152,55 @@ const Plan = () => {
         </div>
       }
 
- 
-  
-        
-      
-
- 
-
-
-
       {hasPdf ? hasPdf : 
       <div className='flex flex-col'>
         <Backdrop className={classes.backdrop} open>
           <CircularProgress color="inherit" />
         </Backdrop>
+        <motion.div className='text-7xl flex justify-center'>
+            <Typewriter
+                  options={{
+                    strings:[],
+                    autoStart: true,
+                    loop: true,
+                    delay: 100,
+                    
+                  }}
+                  onInit={(typewriter) => {
+                    typewriter
+                      .typeString("Designing the Title Page")
+                      .pauseFor(5000)
+                      .deleteAll()
+                      .typeString("Making the Table of Contents")
+                      .pauseFor(10000)
+                      .deleteAll()
+                      .typeString("Creating the Executive Summary")
+                      .pauseFor(20000)
+                      .deleteAll()
+                      .typeString("Producing the Business Overview")
+                      .pauseFor(20000)
+                      .deleteAll()
+                      .typeString("Calculating Competiitve Advantage")
+                      .pauseFor(20000)
+                      .deleteAll()
+                      .typeString("Finding Sales and Market Strategy")
+                      .pauseFor(20000)
+                      .deleteAll()
+                      .typeString("Constructing the Timeline")
+                      .pauseFor(20000)
+                      .deleteAll()
+                      .typeString("Analyazing Finance")
+                      .pauseFor(20000)
+                      .deleteAll()
+                      .typeString("Measuring Key Metrics & Risk Reduction")
+                      .pauseFor(20000)
+                      .deleteAll()
+                      .typeString("Summarizing Conclusion")
+                      .pauseFor(30000)
+                      .deleteAll()
+                  }}
+                />
+              </motion.div>
       
         </div>
       }
