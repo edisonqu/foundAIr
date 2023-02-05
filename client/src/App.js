@@ -14,7 +14,6 @@ function App() {
     <div className="App">
     <BrowserRouter>
         <Suspense fallback={<div>Page Loading...</div>}>
-        <Navbar />
         <AnimatePresence
          mode='wait'>
            <Routes>

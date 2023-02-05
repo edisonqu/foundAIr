@@ -22,7 +22,7 @@ const Form3 = ({ onSubmit }) => {
         animate={{ y: 0 }}
         transition={{ stiffness: 150 }}
       >
-        <TextField id="company" fullWidth label="Company" name='company' required onChange={e => onSubmit(e.target.value)}/>
+        <TextField id="company" fullWidth label="What is Your Company Name" name='company' required onChange={e => onSubmit(e.target.value)}/>
       </motion.div>
   </fieldset>
   )

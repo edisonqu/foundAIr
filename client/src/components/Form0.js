@@ -22,7 +22,7 @@ const classes = useStyles();
       animate={{ y: 0 }}
       transition={{ stiffness: 150 }}
     >
-    <TextField id="name" fullWidth label="Name" name='name' required onChange={e => onSubmit(e.target.value)}/>
+    <TextField id="name" fullWidth label="What is your Name" name='name' required onChange={e => onSubmit(e.target.value)}/>
     </motion.div>
 </fieldset>
   )

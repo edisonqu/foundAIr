@@ -14,6 +14,9 @@ const Home = () => {
       <BlockRevealAnimation>
         This will be revealed
       </BlockRevealAnimation>
+      <BlockRevealAnimation>
+        This will be revealed
+      </BlockRevealAnimation>
     </div>
   );
   }

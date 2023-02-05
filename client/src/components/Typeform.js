@@ -43,13 +43,14 @@ const Typeform = ({ children, onSubmit }) => {
             color="primary"
             >
               {fields < children.length - 1 && fields > 0 && (
+                
                 <Button onClick={prevField} className='m-2'>back</Button>
               )}
               {fields < children.length - 2 && (
-                <Button onClick={nextField} className='mx-12'>Next</Button>
+                <Button onClick={nextField} className='m-2'>Next</Button>
               )}
               {fields === children.length - 2 && (
-                <Button onClick={nextField} className='mx-12'>Submit</Button>
+                <Button onClick={nextField} className='m-2'>Submit</Button>
               )}
             </ButtonGroup>
           </div>

@@ -10,9 +10,20 @@ import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import { mergeClasses } from '@material-ui/styles';
-
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
+
+import "./page-styles/Plan.css"
+
+
+import { Viewer } from '@react-pdf-viewer/core'; 
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'; 
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { Worker } from '@react-pdf-viewer/core'; 
+
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
+import PDFViewer from 'pdf-viewer-reactjs'
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -26,12 +37,35 @@ const Plan = () => {
   const classes = useStyles();
   let data = false;
   let pdf = true;
+  const url = 
+"https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf"
   const [name, setName] = useState("");
   const [idea, setIdea] = useState("");
   const [budget, setBudget] = useState("");
   const [company, setCompany] = useState("");
   const [hasData, setHasData] = useState(false);
   const [hasPdf, setHasPdf] = useState(true);
+  const [CID, setCID] = useState("")
+
+
+	const [numPages, setNumPages] = useState(null);
+	const [pageNumber, setPageNumber] = useState(1);
+
+	const onDocumentLoadSuccess = ({ numPages }) => {
+		setNumPages(numPages);
+	};
+
+	const goToPrevPage = () =>
+		setPageNumber(pageNumber - 1 <= 1 ? 1 : pageNumber - 1);
+
+	const goToNextPage = () =>
+		setPageNumber(
+			pageNumber + 1 >= numPages ? numPages : pageNumber + 1,
+		);
+
+  
+
+
   
 
   const chooseName = (value) => {
@@ -59,13 +93,32 @@ const Plan = () => {
 
   const handleConfirm = () => {
     setHasPdf(false);
+    console.log(company, name, idea, budget);
+    console.log("fetching")
+    console.log(company)
+    console.log(name)
+    console.log(idea)
+    console.log(budget)
+    console.log('hello')
     fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=${company}&author=${name} Qu&idea=${idea}&budget=${budget}`, {
+    // fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=ian%27s%20daycare&author=Edison%20Qu&idea=holding%20children%20hostage%20for%20cash&budget=25000`, {  
       method: 'GET',
       headers: { 'Content-Type': 'application/json',
      },
+  }).then(function(response){
+    response.text().then((response)=>{
+        setCID(response)
+        window.open(`https://${CID}.ipfs.nftstorage.link`, '_blank');
+        console.log(response)
+
   })
-  console.log("fetched data!")
+  return null
+  })
+
   }
+
+
+
     
   return (
     <div className="h-screen bg-white">
@@ -97,6 +150,15 @@ const Plan = () => {
 
         </div>
       }
+
+ 
+  
+        
+      
+
+ 
+
+
 
       {hasPdf ? hasPdf : 
       <div className='flex flex-col'>
