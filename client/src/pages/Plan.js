@@ -94,19 +94,19 @@ const CID1 = "bafkreicbb5uo4olhe4eptcws4ai2embnqxypcxcsn73j7puhpru75v373q"
     console.log(data);
   }
 
-  const handleConfirm = () => {
+  
+
+  async function handleConfirm() {
     setHasPdf(false);
     console.log(company, name, idea, budget);
     console.log("fetching")
 
 
-    fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=${company}&author=${name} Qu&idea=${idea}&budget=${budget}`, {
-    // fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=ian%27s%20daycare&author=Edison%20Qu&idea=holding%20children%20hostage%20for%20cash&budget=25000`, {  
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json',
-     },
-  }).then(function(response){
+    // fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=few&author=fewfw%20Qu&idea=fewfwf&budget=fewfewf`, {
+    await fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=${company}&author=${name}&idea=${idea}&budget=${budget}`)
+    .then((response)=>{
     response.text().then((response)=>{
+        console.log("")
         setCID(response);
         navigate('/completed', { replace: true });
         window.open(`https://${CID}.ipfs.nftstorage.link`, '_blank');
