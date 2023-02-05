@@ -28,10 +28,6 @@ const Plan = () => {
   
   const classes = useStyles();
   let data = false;
-  let pdf = true;
-  const url = 
-"https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf"
-const CID1 = "bafkreicbb5uo4olhe4eptcws4ai2embnqxypcxcsn73j7puhpru75v373q"
   const [name, setName] = useState("");
   const [idea, setIdea] = useState("");
   const [budget, setBudget] = useState("");
@@ -100,7 +96,7 @@ const CID1 = "bafkreicbb5uo4olhe4eptcws4ai2embnqxypcxcsn73j7puhpru75v373q"
         console.log("")
         setCID(response);
         navigate('/completed', { replace: true });
-        window.open(`https://${CID}.ipfs.nftstorage.link`, '_blank');
+        window.open(`https://${response}.ipfs.nftstorage.link`, '_blank');
         console.log(response);
 
   })
