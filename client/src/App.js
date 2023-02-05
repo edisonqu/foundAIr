@@ -11,7 +11,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App bg-white">
+    <div className="App">
     <BrowserRouter>
         <Suspense fallback={<div>Page Loading...</div>}>
         <Navbar />

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -12,21 +12,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Form = () => {
+const Form = ({ onSubmit }) => {
   const classes = useStyles();
+
+  
   return (
-    <div>
-      <form className={classes.root} autoComplete="off">
-        <motion.div
-          className="col-md-6 offset-md-3"
-          initial={{ y: "50vh" }}
-          animate={{ y: 0 }}
-          transition={{ stiffness: 150 }}
-        >
-          <TextField id="full-name" fullWidth label="Full Name" />
-        </motion.div>
-    </form>
-    </div>
+    <fieldset className={classes.root} autoComplete="off">
+      <motion.div
+        className="col-md-6 offset-md-3"
+        initial={{ y: "50vh" }}
+        animate={{ y: 0 }}
+        transition={{ stiffness: 150 }}
+      >
+        <TextField id="idea" fullWidth label="Idea (10 words max)" name='idea' required onChange={e => onSubmit(e.target.value)}/>
+      </motion.div>
+  </fieldset>
   )
 }
 

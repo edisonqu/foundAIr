@@ -12,21 +12,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Form2 = () => {
+const Form2 = ({ onSubmit }) => {
   const classes = useStyles();
   return (
-    <div>
-      <form className={classes.root} autoComplete="off">
+      <fieldset className={classes.root} autoComplete="off">
         <motion.div
           className="col-md-6 offset-md-3"
           initial={{ y: "50vh" }}
           animate={{ y: 0 }}
           transition={{ stiffness: 150 }}
         >
-          <TextField id="email-id" fullWidth label="Email id" />
+        <TextField id="budget" fullWidth label="Budget" name='budget' required onChange={e => onSubmit(e.target.value)}/>
         </motion.div>
-    </form>
-    </div>
+    </fieldset>
   )
 }
 

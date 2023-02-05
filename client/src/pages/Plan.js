@@ -1,20 +1,39 @@
-import React from 'react'
+import { useState } from 'react'
 import TypeForm from "../components/Typeform";
-import BasicTextFields from "../components/Form";
-import EmailField from "../components/Form2";
-import ContactField from "../components/Form3";
+import IdeaField from "../components/Form";
+import BudgetField from "../components/Form2";
+import CompanyField from "../components/Form3";
 
 const Plan = () => {
-  const submit = (data) => {
-    return console.log(data);
-  };
+  const [idea, setIdea] = useState("");
+  const [budget, setBudget] = useState("");
+  const [company, setCompany] = useState("");
+
+  const chooseIdea = (value) => {
+    setIdea(value);
+    console.log(idea);
+  }
+  const chooseBudget = (value) => {
+    setBudget(value);
+  }
+  const chooseCompany = (value) => {
+    setCompany(value);
+  }
+
+  const handleSubmit = () => {
+    console.log(idea, budget, company)
+  }
+
+  
+
+
   return (
-    <div>
-      <h1>asdasdasdasd</h1>
-      <TypeForm onSubmit={submit}>
-        <BasicTextFields />
-        <EmailField />
-        <ContactField />
+    <div className="h-screen bg-white">
+      <h1 className='text-center text-6xl'>Generate Plan</h1>
+      <TypeForm onSubmit={handleSubmit}>
+        <IdeaField onSubmit={chooseIdea}/>
+        <BudgetField onSubmit={chooseBudget} />
+        <CompanyField onSubmit={chooseCompany}/>
       </TypeForm>
     </div>
   )
