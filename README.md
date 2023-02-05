@@ -4,17 +4,26 @@ Become a startup founder in just 30 seconds! Create a business plan in minutes!
 
 ## Quick Start
 
-Start the React frontend server by navigating to the `/client`, installing the dependencies with `npm install` and then starting it up with `npm start`
+Start the React Frontend server by navigating to the `/client`, installing the dependencies with `npm install` and then starting it up with `npm start`
 
 
 
-## Demo
+## Examples
 
-Navigate to the [foundAIr Generated Business Plan on Dog Fur Jackets.](dog_jacket_business_plan.pdf)
+* Edison's Small Business Plan
+  * [foundAIr Generated Business Plan on Dog Fur Jackets.](dog_jacket_business_plan.pdf)
+* Anna's Small Business Plan
+  * [foundAIr Generated Business Plan on Real Cat Ears.](real_cat_ears_business_plan.pdf)
+* Ian's Small Business Plan
+  * [foundAIr Generated Business Plan for Daycares.](daycare_business_plan.pdf)
+* Stephen's Small Business Plan
+  * [foundAIr Generated Business Plan for Egirls.](daycare_business_plan.pdf)
 
 ## Try It Out!
 
-**[http://foundair.tech/](requirements.txt)** (stolen domain)
+Try it out for yourself. Become a founder in minutes!
+
+**[http://foundair.tech/](requirements.txt)**
 ## Inspiration
 
 Imagine you have a great idea for a startup (as we're sure you probably don't even need to imagine). You've got a vision, you've got your dream, but when it comes time to execute, suddenly, you feel lost, and you don't know where to even start. Lucky for you, we created foundAIr - an AI-powered business plan writer that will take care of the logistics for you! We felt that uncertainty when we started our own ventures, but after overcoming this challenge, we've put our minds together to help other founders take their ventures to the moon!
@@ -52,3 +61,4 @@ Finally, we wanted to make the website more than just a webpage. By designing ou
 ## What's next for foundAIr
 
 Although we've helped founders overcome the hurdle of deciding how to grow and scale their dream ventures, there are still many obstacles that budding entrepreneurs have to face. How will they decide on a logo? What if they can’t come up with a company name? Perhaps they’ll need more diagrams for further clarification? This, and much more, will be implemented in the next release of foundAIr!
+
