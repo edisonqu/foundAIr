@@ -31,7 +31,7 @@ const Plan = () => {
   let pdf = true;
   const url = 
 "https://cors-anywhere.herokuapp.com/http://www.pdf995.com/samples/pdf.pdf"
-const CID1 = "bafkreicbb5uo4olhe4eptcws4ai2embnqxypcxcsn73j7puhpru75v373q"
+// const CID1 = "bafkreicbb5uo4olhe4eptcws4ai2embnqxypcxcsn73j7puhpru75v373q"
   const [name, setName] = useState("");
   const [idea, setIdea] = useState("");
   const [budget, setBudget] = useState("");
@@ -97,13 +97,19 @@ const CID1 = "bafkreicbb5uo4olhe4eptcws4ai2embnqxypcxcsn73j7puhpru75v373q"
     await fetch(`https://dsazg33plckom3y6c4draofpl40oaout.lambda-url.us-east-2.on.aws/?company_name=${company}&author=${name}&idea=${idea}&budget=${budget}`)
     .then((response)=>{
     response.text().then((response)=>{
-        console.log("")
+        console.log(response)
         setCID(response);
-        navigate('/completed', { replace: true });
-        window.open(`https://${CID}.ipfs.nftstorage.link`, '_blank');
         console.log(response);
+        console.log("Using CID the value is: "+CID)
+        window.localStorage.setItem('cid1',response);
+        var CID1 = window.localStorage.getItem('cid1')
+        navigate('/completed', { replace: true });
+        window.open(`https://${CID1}.ipfs.nftstorage.link`, '_blank');
+
 
   })
+
+
   return null
   })
 
