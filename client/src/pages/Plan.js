@@ -104,11 +104,7 @@ const Plan = () => {
         window.localStorage.setItem('cid1',response);
         var CID1 = window.localStorage.getItem('cid1')
 
-        // changed location
-        navigate(`https://${CID1}.ipfs.nftstorage.link`, { replace: true });
-        // window.open(`https://${CID1}.ipfs.nftstorage.link`, '_blank');
-
-
+        window.location.replace(`https://${CID1}.ipfs.nftstorage.link`)
   })
 
 
