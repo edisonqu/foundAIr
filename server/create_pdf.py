@@ -2,20 +2,19 @@ from fpdf import FPDF
 from api_call import *
 
 
-def create_pdf(title,company_name,author,idea,budget):
+def create_pdf(title, company_name, author, idea, budget):
     class PDF(FPDF):
         def footer(self):
             # Position at 1.5 cm from bottom
             self.set_y(-15)
             # Arial italic 8
-
             self.set_font('Arial', 'I', 8)
             # Text color in gray
             self.set_text_color(128)
             # Page number
-            self.cell(0, 10, 'Page ' + str(self.page_no()) + " Powered by foundair.tech",align='C')
+            self.cell(0, 10, 'Page ' + str(self.page_no()) + " Powered by foundair.tech", align='C')
 
-        def title_page(self, company_name,author):
+        def title_page(self, company_name, author):
             self.add_page()
             self.set_font('Arial', "I", 32)
             self.set_text_color(255, 255, 255)
@@ -30,52 +29,58 @@ def create_pdf(title,company_name,author,idea,budget):
             self.set_text_color(0, 0, 0)
 
         def table_of_contents(self):
-
             self.add_page()
-            self.set_font("Arial","B",24)
-            self.cell(0,30,"Table Of Contents",0,1,align='C')
-            self.set_font("Arial","",18)
-            # topics = ["Executive Summary","Business Overview","Market Analysis","Competitive Advantage","Sales & Market Strategy","Finance","Risk Deduction","Conclusion"]
-            #
-            # for index in range(len(topics)):
-            #     character_number = len(topics[index])
-            #     number_of_periods = 90-character_number-1
-            #     periods = '.'*number_of_periods
-            #     self.cell(0, 18, topics[index]+periods+str(index), 0, 1, '', False)
-            self.cell(0, 18, "Executive Summary........................................................................3", 0, 1, '', False)
-            self.cell(0, 18, "Business Overview..........................................................................4", 0, 1, '', False)
-            self.cell(0, 18, "Market Analysis...............................................................................5", 0, 1, '', False)
-            self.cell(0, 18, "Competitive Advantage...................................................................6", 0, 1, '', False)
-            self.cell(0, 18, "Sales & Market Strategy..................................................................7", 0, 1, '', False)
-            self.cell(0, 18, "Timeline...........................................................................................8", 0, 1, '', False)
-            self.cell(0, 18, "Finance............................................................................................9", 0, 1, '', False)
-            self.cell(0, 18, "Key Metrics & Risk Reduction........................................................10", 0, 1, '', False)
-            self.cell(0, 18, "Conclusion......................................................................................11", 0, 1, '', False)
-
+            self.set_font("Arial", "B", 24)
+            self.cell(0, 30, "Table Of Contents", 0, 1, align='C')
+            self.set_font("Arial", "", 18)
+            self.cell(0, 18,
+                      "Executive Summary........................................................................3", 0,
+                      1, '', False)
+            self.cell(0, 18,
+                      "Business Overview..........................................................................4", 0,
+                      1, '', False)
+            self.cell(0, 18,
+                      "Market Analysis...............................................................................5",
+                      0, 1, '', False)
+            self.cell(0, 18,
+                      "Competitive Advantage...................................................................6", 0, 1,
+                      '', False)
+            self.cell(0, 18,
+                      "Sales & Market Strategy..................................................................7", 0,
+                      1, '', False)
+            self.cell(0, 18,
+                      "Timeline...........................................................................................8",
+                      0, 1, '', False)
+            self.cell(0, 18,
+                      "Finance............................................................................................9",
+                      0, 1, '', False)
+            self.cell(0, 18, "Key Metrics & Risk Reduction........................................................10",
+                      0, 1, '', False)
+            self.cell(0, 18,
+                      "Conclusion......................................................................................11",
+                      0, 1, '', False)
 
         def body_page(self, title, output):
             self.add_page()
             self.set_font('Arial', "B", 24)
             self.cell(0, 12, title, 0, 1, 'C', False)
             self.set_font('Arial', "", 14)
-            fix_unicode = output.replace ("’","'")
-            final_output = fix_unicode.replace("•",'- ')
-            self.multi_cell(0, 5, final_output.replace("’","'"))
+            fix_unicode = output.replace("’", "'")
+            final_output = fix_unicode.replace("•", '- ')
+            self.multi_cell(0, 5, final_output.replace("’", "'"))
 
     pdf = PDF(format="A4")
     pdf.set_title(title)
     pdf.set_author(author)
-    pdf.title_page(company_name,author)
+    pdf.title_page(company_name, author)
     pdf.table_of_contents()
-    pdf.set_font('Arial',"",24)
+    pdf.set_font('Arial', "", 24)
     topics = ["Executive Summary", "Business Overview", "Market Analysis", "Competitive Advantage",
               "Sales & Market Strategy", "Timeline", "Finance", "Key Metrics and Risk Deduction", "Conclusion"]
 
-    # Removed support for an actual summary
-
-    AI_answers = call_api(company_name,idea,budget)
+    # Calls the function
+    AI_answers = call_api(company_name, idea, budget)
     for index_number in range(len(topics)):
         pdf.body_page(topics[index_number], AI_answers[index_number]['choices'][0]['text'])
     pdf.output('tmp/business_plan.pdf', 'F')
-    return "solid"
-
+    return "Finished"
