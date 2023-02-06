@@ -103,8 +103,10 @@ const Plan = () => {
         console.log("Using CID the value is: "+CID)
         window.localStorage.setItem('cid1',response);
         var CID1 = window.localStorage.getItem('cid1')
-        navigate('/completed', { replace: true });
-        window.open(`https://${CID1}.ipfs.nftstorage.link`, '_blank');
+
+        // changed location
+        navigate(`https://${CID1}.ipfs.nftstorage.link`, { replace: true });
+        // window.open(`https://${CID1}.ipfs.nftstorage.link`, '_blank');
 
 
   })

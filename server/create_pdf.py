@@ -1,12 +1,6 @@
 from fpdf import FPDF
 from api_call import *
 
-# title = 'Business Plan'
-# company_name = "Edison's Dog Store"
-# author = "Edison Qu"
-# idea = "dog plushies"
-# budget = 3000
-# prompts = [f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 600 words. describe the problem faced by people without my business idea, the pain points my business idea targets, and explain my idea. no headings, no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. write me a market analysis, explaining the target market, the customer segments, explain how the consumers will take advantage of this, and explain the competition from other business i will face. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. write me the unique value proposition of my idea and the competitive advantage of my idea. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 550 words. explain the marketing channels i can take advantage of to promote my idea and interact with my consumers, both online and in person. explain how i can sell my idea in person and online. no headings and no jot notes.", f"the business name is {company_name}. i am writing a business plan. write a timeline to launch my business with numbers. minimum 500 words. business idea: {idea}. no headings and no jot notes.", f"the business name is {company_name}.i am writing a business plan. business idea: {idea}. my budget is only {budget}. give me a budget for my business and include descriptions for each cost. include numbers and jot form.", f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. explain the key metrics with specific numbers in jot form. describe methods to reduce risk. explain how we will reassess and reevaluate our progress. no headings.", f"summarize the following text in 150 words. {summary}"]
 
 def create_pdf(title,company_name,author,idea,budget):
     class PDF(FPDF):
@@ -19,7 +13,7 @@ def create_pdf(title,company_name,author,idea,budget):
             # Text color in gray
             self.set_text_color(128)
             # Page number
-            self.cell(0, 10, 'Page ' + str(self.page_no()) + " Powered by foundAIr",align='C')
+            self.cell(0, 10, 'Page ' + str(self.page_no()) + " Powered by foundair.tech",align='C')
 
         def title_page(self, company_name,author):
             self.add_page()
@@ -85,10 +79,3 @@ def create_pdf(title,company_name,author,idea,budget):
     pdf.output('tmp/business_plan.pdf', 'F')
     return "solid"
 
-
-title = 'Business Plan'
-company_name = "SmartChan's Edison"
-author = "Edison Qu"
-idea = "Cannabis Shop that sells shoes"
-budget = 3000
-print(create_pdf(title, company_name, author, idea, budget))
