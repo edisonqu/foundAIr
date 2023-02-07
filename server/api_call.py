@@ -46,7 +46,9 @@ def get_tasks(session, company_name, idea, budget):
         }
         url = "https://api.openai.com/v1/completions"
 
-        tasks.append(asyncio.create_task(session.post(url, headers=headers, json=json_data, ssl=False)))
+        response = asyncio.create_task(session.post(url, headers=headers, json=json_data, ssl=False))
+        print(response)
+        tasks.append(response)
     return tasks
 
 
@@ -65,6 +67,8 @@ async def get_data(company_name, idea, budget):
         results = []
         for response in responses:
             results.append(await response.json())
+            print(response)
+    print(results)
     return results
 
 

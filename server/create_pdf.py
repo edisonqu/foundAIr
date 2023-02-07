@@ -81,6 +81,12 @@ def create_pdf(title, company_name, author, idea, budget):
     # Calls the function
     AI_answers = call_api(company_name, idea, budget)
     for index_number in range(len(topics)):
-        pdf.body_page(topics[index_number], AI_answers[index_number]['choices'][0]['text'])
+        try:
+            print(AI_answers[index_number])
+            pdf.body_page(topics[index_number], AI_answers[index_number]['choices'][0]['text'])
+        except Exception as err:
+            print(f"An Error has occurred! {err}")
+            print(AI_answers[index_number])
+            pdf.body_page(topics[index_number], "OPENAI SERVERS ARE DOWN AND UNABLE TO PROCESS THIS PAGE. TRY AGAIN LATER!")
     pdf.output('tmp/business_plan.pdf', 'F')
     return "Finished"
