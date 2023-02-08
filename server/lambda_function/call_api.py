@@ -1,4 +1,3 @@
-
 import asyncio
 import aiohttp
 
@@ -21,7 +20,7 @@ def get_tasks(session,company_name, idea,budget):
         f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. write me the unique value proposition of my idea and the competitive advantage of my idea. no headings and no jot notes.",
         f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 550 words. explain the marketing channels i can take advantage of to promote my idea and interact with my consumers, both online and in person. explain how i can sell my idea in person and online. no headings and no jot notes.",
         f"the business name is {company_name}. i am writing a business plan. write a timeline to launch my business with numbers. minimum 500 words. business idea: {idea}. no headings and no jot notes.",
-        f"the business name is {company_name}.i am writing a business plan. business idea: {idea}. my budget is only {budget}. give me a budget for my business and include descriptions for each cost. include numbers and jot form.",
+        f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. my budget is only {budget}. write a short preamble without a preamble heading. give me a budget for my business and include subcategories and long descriptions for each cost. include numbers and jot form with subcategories for each cost.",
         f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. explain the key metrics with specific numbers in jot form. describe methods to reduce risk. explain how we will reassess and reevaluate our progress. no headings.",
         f"i am writing a business plan. write a conclusion on a company called {company_name} which has the idea of {idea}."]
     for prompt in prompts:
