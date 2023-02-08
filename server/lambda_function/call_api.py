@@ -1,14 +1,16 @@
+#Import libraries
 import asyncio
 import aiohttp
-
-
 import os
 import openai
 
+#Define api key to be stored in .env file
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+#Used to retrieve next tasks
 def get_tasks(session,company_name, idea,budget):
     tasks = []
+    #Defines all of the prompts used when API is called
     prompts = [
         f"the business name is {company_name}. i am writing a business plan. write an executive summary for my business. "
         f"minimum 500 words. business idea: {idea}. topics to cover: problem, solution, customer segments, "
@@ -24,24 +26,29 @@ def get_tasks(session,company_name, idea,budget):
         f"the business name is {company_name}. i am writing a business plan. business idea: {idea}. minimum 500 words. explain the key metrics with specific numbers in jot form. describe methods to reduce risk. explain how we will reassess and reevaluate our progress. no headings.",
         f"i am writing a business plan. write a conclusion on a company called {company_name} which has the idea of {idea}."]
     for prompt in prompts:
+        #Print tracker used for debugging and to keep track of progress
         print(f"Currently Computing: {prompt}")
 
         headers = {
+            # Grant authorization
             # Already added when you pass json=
             # 'Content-Type': 'application/json',
             'Authorization': f'Bearer {os.getenv("OPENAI_API_KEY")}',
         }
 
+        #Define GPT model to be used, as well as max tokens per request and variance
         json_data = {
             'model': 'text-davinci-003',
             'prompt': prompt,
             'temperature': 0.1,
             'max_tokens': 2500,
         }
+        #Prepares necessary info for API call
         url = "https://api.openai.com/v1/completions"
         tasks.append(asyncio.create_task(session.post(url,headers=headers,json=json_data,ssl=False)))
     return tasks
 
+#Gets the data to be used for the API call
 async def get_data(company_name,idea,budget):
     async with aiohttp.ClientSession() as session:
         tasks = get_tasks(session,company_name,idea,budget)
@@ -51,6 +58,7 @@ async def get_data(company_name,idea,budget):
             results.append(await response.json())
     return results
 
+#Calls the API
 def call_api(company_name,idea,budget):
   data = asyncio.run(get_data(company_name,idea,budget))
   # Returns as a list
