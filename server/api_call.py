@@ -1,3 +1,5 @@
+import time
+
 import dotenv
 import asyncio
 import aiohttp
@@ -39,10 +41,10 @@ def get_tasks(session, company_name, idea, budget):
         }
 
         json_data = {
-            'model': 'text-davinci-003',
+            'model': 'code-davinci-002',
             'prompt': prompt,
-            'temperature': 0.1,
-            'max_tokens': 2500,
+            'temperature': 0,
+            'max_tokens': 7500,
         }
         url = "https://api.openai.com/v1/completions"
 
