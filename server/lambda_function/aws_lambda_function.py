@@ -38,9 +38,9 @@ def lambda_handler(event, context):
             self.set_font('Arial', "", 24)
             self.cell(0, 20, 'Presented By:', 0, 1, 'C', True)
             self.cell(0, 20, f"{author}", 0, 1, 'C', True)
-            self.set_font('Arial', "I", 10)
-            self.cell(0, 25, "Powered by foundAIr", 0, 1, 'C', True)
-            self.set_text_color(0, 0, 0)
+            #self.set_font('Arial', "I", 10)
+            #self.cell(0, 25, "Powered by foundAIr", 0, 1, 'C', True)
+            #self.set_text_color(0, 0, 0)
         #Creates table of contents
         def table_of_contents(self):
             self.add_page()
