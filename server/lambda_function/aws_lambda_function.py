@@ -105,7 +105,7 @@ def lambda_handler(event, context):
     #Generated body pages
     AI_answers = call_api(company_name, idea, budget)
     for index_number in range(len(topics)):
-        pdf.body_page(topics[index_number], AI_answers[index_number]['choices'][0]['text'])
+        pdf.body_page(topics[index_number], AI_answers[index_number]['choices'][0]['message']['content'])
     #PDF is stored a byte
     byte = pdf.output()
     #Defines IPFS specifics

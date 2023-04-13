@@ -21,7 +21,7 @@ def get_tasks(session, company_name, idea, budget):
     """
     tasks = []
     prompts = [
-        f"the business name is {company_name}. i am writing a business plan. write an executive summary for my business. "
+        f"the business name is {company_name}. i am writing a business plan with the idea of {idea}. write an executive summary for my business. "
         f"minimum 500 words. business idea: {idea}. topics to cover: problem, solution, customer segments, "
         f"financials on a {budget} budget, marketing channels both online and in-person, sales methods both online "
         f"and in-person, key metrics, risk reduction, and competitive advantage. section paragraphs by topic. no "
@@ -41,12 +41,15 @@ def get_tasks(session, company_name, idea, budget):
         }
 
         json_data = {
-            'model': 'code-davinci-002',
-            'prompt': prompt,
-            'temperature': 0,
-            'max_tokens': 7500,
+            'model': 'gpt-3.5-turbo',
+            'messages': [
+                {
+                    'role': 'user',
+                    'content': f'{prompt} write around 400 words',
+                },
+            ],
         }
-        url = "https://api.openai.com/v1/completions"
+        url = "https://api.openai.com/v1/chat/completions"
 
         response = asyncio.create_task(session.post(url, headers=headers, json=json_data, ssl=False))
         print(response)

@@ -67,7 +67,7 @@ def create_pdf(title, company_name, author, idea, budget):
             self.set_font('Arial', "", 14)
             fix_unicode = output.replace("’", "'")
             final_output = fix_unicode.replace("•", '- ')
-            self.multi_cell(0, 5, final_output.replace("’", "'"))
+            self.multi_cell(0, 5, final_output.replace("’", "'").replace("“","'").replace("–",'-'))
 
     pdf = PDF(format="A4")
     pdf.set_title(title)
@@ -83,10 +83,13 @@ def create_pdf(title, company_name, author, idea, budget):
     for index_number in range(len(topics)):
         try:
             print(AI_answers[index_number])
-            pdf.body_page(topics[index_number], AI_answers[index_number]['choices'][0]['text'])
+            # response.json()['choices'][0]['message']['content']
+            pdf.body_page(topics[index_number], AI_answers[index_number]['choices'][0]['message']['content'])
         except Exception as err:
             print(f"An Error has occurred! {err}")
             print(AI_answers[index_number])
-            pdf.body_page(topics[index_number], "OPENAI SERVERS ARE DOWN AND UNABLE TO PROCESS THIS PAGE. TRY AGAIN LATER!")
+            pdf.body_page(topics[index_number], f"{err}")
     pdf.output('tmp/business_plan.pdf', 'F')
     return "Finished"
+
+create_pdf(title="jones",company_name="foundair",author="edison qu",idea="an ai powered business plan maker",budget=3)

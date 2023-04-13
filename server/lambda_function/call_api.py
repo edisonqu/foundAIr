@@ -12,7 +12,7 @@ def get_tasks(session,company_name, idea,budget):
     tasks = []
     #Defines all of the prompts used when API is called
     prompts = [
-        f"the business name is {company_name}. i am writing a business plan. write an executive summary for my business. "
+        f"the business name is {company_name}. i am writing a business plan with the idea of {idea}. write an executive summary for my business. "
         f"minimum 500 words. business idea: {idea}. topics to cover: problem, solution, customer segments, "
         f"financials on a {budget} budget, marketing channels both online and in-person, sales methods both online "
         f"and in-person, key metrics, risk reduction, and competitive advantage. section paragraphs by topic. no "
@@ -38,13 +38,15 @@ def get_tasks(session,company_name, idea,budget):
 
         #Define GPT model to be used, as well as max tokens per request and variance
         json_data = {
-            'model': 'text-davinci-003',
-            'prompt': prompt,
-            'temperature': 0.1,
-            'max_tokens': 2500,
+            'model': 'gpt-3.5-turbo',
+            'messages': [
+                {
+                    'role': 'user',
+                    'content': f'{prompt} write around 400 words',
+                },
+            ],
         }
-        #Prepares necessary info for API call
-        url = "https://api.openai.com/v1/completions"
+        url = "https://api.openai.com/v1/chat/completions"
         tasks.append(asyncio.create_task(session.post(url,headers=headers,json=json_data,ssl=False)))
     return tasks
 
