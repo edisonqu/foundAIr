@@ -1,5 +1,6 @@
 from fpdf import FPDF
 from api_call import *
+from create_watermark import *
 
 
 def create_pdf(title, company_name, author, idea, budget):
@@ -10,22 +11,22 @@ def create_pdf(title, company_name, author, idea, budget):
             # Arial italic 8
             self.set_font('Arial', 'I', 8)
             # Text color in gray
-            self.set_text_color(128)
+            self.set_text_color(255)
             # Page number
             self.cell(0, 10, 'Page ' + str(self.page_no()) + " Powered by foundair.tech", align='C')
 
         def title_page(self, company_name, author):
             self.add_page()
             self.set_font('Arial', "I", 32)
-            self.set_text_color(255, 255, 255)
-            self.cell(0, 50, "Business Plan", 0, 1, 'C', True)
+            self.set_text_color(0)
+            self.cell(0, 50, "Business Plan", 0, 1, 'C', False)
             self.set_font('Arial', "B", 30)
-            self.cell(0, 150, f"{company_name}", 0, 1, 'C', True)
+            self.cell(0, 150, f"{company_name}", 0, 1, 'C', False)
             self.set_font('Arial', "", 24)
-            self.cell(0, 20, 'Presented By:', 0, 1, 'C', True)
-            self.cell(0, 20, f"{author}", 0, 1, 'C', True)
+            self.cell(0, 20, 'Presented By:', 0, 1, 'C', False)
+            self.cell(0, 20, f"{author}", 0, 1, 'C', False)
             self.set_font('Arial', "I", 10)
-            self.cell(0, 25, "Powered by foundAIr", 0, 1, 'C', True)
+            self.cell(0, 25, "Powered by foundAIr", 0, 1, 'C', False)
             self.set_text_color(0, 0, 0)
 
         def table_of_contents(self):
@@ -89,7 +90,8 @@ def create_pdf(title, company_name, author, idea, budget):
             print(f"An Error has occurred! {err}")
             print(AI_answers[index_number])
             pdf.body_page(topics[index_number], f"{err}")
-    pdf.output('tmp/business_plan.pdf', 'F')
+    pdf.output('server/tmp/business_plan.pdf', 'F')
+    watermark()
     return "Finished"
 
-create_pdf(title="jones",company_name="foundair",author="edison qu",idea="an ai powered business plan maker",budget=3)
+create_pdf(title="beef",company_name="beef it up",author="edison q.",idea="making beef from artificial chemicals",budget=50000)
